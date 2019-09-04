@@ -1,0 +1,25 @@
+---
+- hosts: vm
+  tasks:
+   - name: vm | Configure drop caches every minute
+     become: true
+     cron:
+        name: drop_caches
+        cron_file: /etc/crontab
+        day: '*'
+        hour: '*'
+        minute: '*'
+        month: '*'
+        dow: '*'
+        state: present
+        disabled: false
+        job: 'echo 3 > /proc/sys/vm/drop_caches'
+        user: root
+   - name: vm | Install basic packages
+     become: true
+     package:
+        name:
+         - vim
+         - atop
+         - tcpdump
+        state: present

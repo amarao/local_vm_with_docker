@@ -1,0 +1,8 @@
+[docker]
+dockerhost ansible_ssh_host=192.168.122.117 ansible_python_interpreter=/usr/bin/python3
+
+[vm]
+dockerhost
+
+[docker_controller]
+localhost env_location=~/.bashrc
