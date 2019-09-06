@@ -35,7 +35,7 @@
      delegate_to: '{{ item }}'
      lineinfile:
        path: '{{ hostvars[item].env_location }}'
-       line: 'export DOCKER_HOST="tcp://{{ ansible_default_ipv4.address }}:2375"'
+       line: 'export DOCKER_HOST="tcp://0.0.0.0:2375"'
      with_items: '{{ groups.docker_controller }}'
   handlers:
    - name: restart docker
