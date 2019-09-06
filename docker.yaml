@@ -27,7 +27,7 @@
          
          # If that does not suit your needs, try a systemd drop-in file, as described in:
          #   https://docs.docker.com/v1.11/engine/admin/systemd/#custom-docker-daemon-options
-         DOCKER_OPTS='-H tcp://{{ ansible_default_ipv4.address }}:2375'
+         DOCKER_OPTS='-H tcp://0.0.0.0:2375'
      notify:
       - restart docker
    - name: docker | Configure local environment
