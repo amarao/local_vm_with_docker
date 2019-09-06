@@ -23,3 +23,19 @@
          - atop
          - tcpdump
         state: present
+   - name: vm | check if vsyscall=emulate is in command line
+     become: true
+     lineinfile:
+        line: 'GRUB_CMDLINE_LINUX_DEFAULT="quiet vsyscall=emulate"'
+        path: /etc/default/grub
+     notify:
+        - update grub
+  handlers:
+     - name: update grub
+       become: true
+       command: /usr/sbin/update-grub
+       notify: reboot vm
+     - name: reboot vm
+       become: true
+       reboot:
+         reboot_timeout: 70
